@@ -1,0 +1,20 @@
+version: "1"
+
+services:
+  # Web Service Fullstack (Express Server + Frontend React SPA)
+  - type: web
+    name: b2b-monitoring-antigravity
+    runtime: node
+    plan: free
+    region: singapore             # Server terdekat (Singapura)
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health  # Health check otomatis
+    autoDeploy: true              # Otomatis deploy ulang tiap git push
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 20
+      - key: PORT
+        value: 10000
